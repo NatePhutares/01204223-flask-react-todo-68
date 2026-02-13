@@ -10,14 +10,20 @@ function TodoItem({todo, toggleDone, deleteTodo, addNewComment}) {
         <button onClick={() => {toggleDone(todo.id)}}>Toggle</button>
         <button onClick={() => {deleteTodo(todo.id)}}>❌</button>
 
-        {(todo.comments) && (todo.comments.length > 0) && (
+        {(todo.comments) && (
             <>
             <b>Comments:</b>
-            <ul>
-                {todo.comments.map(comment => (
-                <li key={comment.id}>{comment.message}</li>
-                ))}
-            </ul>
+            <br/>
+            <b>comment_count: {todo.comments.length}</b>
+            {todo.comments.length > 0 ? (
+                <ul>
+                    {todo.comments.map(comment => (
+                    <li key={comment.id}>{comment.message}</li>
+                    ))}
+                </ul>
+            ) : (
+                <p>No comments</p>
+            )}
             </>
         )}
 
