@@ -40,3 +40,9 @@ class Comment(db.Model):
             "message": self.message,
             "todo_id": self.todo_id
         }
+    
+class User(db.Model):
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    username: Mapped[str] = mapped_column(String(100), unique=True)
+    full_name: Mapped[str] = mapped_column(String(200))
+    hashed_password: Mapped[str] = mapped_column(String(100))
