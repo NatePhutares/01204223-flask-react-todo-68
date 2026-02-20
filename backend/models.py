@@ -2,6 +2,8 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import DeclarativeBase
 from sqlalchemy import Integer, String, ForeignKey                            # เพิ่ม import Foreignkey
 from sqlalchemy.orm import Mapped, mapped_column, relationship                # เพิ่ม import relatiohship
+from flask_bcrypt import generate_password_hash, check_password_hash
+
 
 class Base(DeclarativeBase):
   pass
@@ -46,3 +48,9 @@ class User(db.Model):
     username: Mapped[str] = mapped_column(String(100), unique=True)
     full_name: Mapped[str] = mapped_column(String(200))
     hashed_password: Mapped[str] = mapped_column(String(100))
+
+    def set_password(self, password):
+        self.hashed_password = generate_password_hash(password)
+
+    def check_password(self, password):
+        return check_password_hash(self.hashed_password, password)
