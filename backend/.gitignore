@@ -3,3 +3,6 @@ __pycache__
 /instance
 .venv/
 .env
+/frontend-static
+/local_config.py
+practicum68-489108-e17688c54523.json
